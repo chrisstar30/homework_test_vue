@@ -5,6 +5,7 @@
       <div class="tools">
         <ul>
           <li>新增任務</li>
+          <li @click="resetData()">清空所有任務</li>
         </ul>
       </div>
     </div>
@@ -12,7 +13,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useIndexState } from '../store/index'
 
+const { resetData } = useIndexState()
 </script>
 
 <style lang="sass" scoped>
@@ -27,9 +30,14 @@
 .logo
   font-size: 1.25rem
   font-weight: 600
+ul
+  display: inline-flex
+  align-items: center
 li
   font-size: 1.125rem
   display: block
   user-select: none
   cursor: pointer
+  &:not(:first-child)
+    margin-left: 15px
 </style>

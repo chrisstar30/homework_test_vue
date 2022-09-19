@@ -2,6 +2,12 @@
 import Navbar from './components/Navbar.vue'
 import TicketsList from './components/TicketsList.vue'
 import TimeLine from './components/TimeLine.vue'
+import { indexData } from './model/indexData'
+import { useIndexState } from './store/index'
+
+const indexState = useIndexState()
+console.log(indexData)
+indexState.pushData(indexData)
 </script>
 
 <template>

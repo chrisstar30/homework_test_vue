@@ -1,13 +1,19 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
+import { IndexDataType } from '../model/indexDataType'
 
-interface IndexState {
-}
-
-export const IndexState = defineStore({
+export const useIndexState = defineStore({
   id: 'IndexState',
-  state: (): IndexState => ({
-    
-  }),
+  state: () => {
+    return {
+      allData: [] as IndexDataType[],
+    }
+  },
   actions: {
+    pushData: function(data: IndexDataType[]) {
+      Object.assign(this.allData, data)
+    },
+    resetData: function() {
+      this.$reset()
+    }
   }
 })
