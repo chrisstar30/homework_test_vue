@@ -18,3 +18,9 @@ indexState.pushData(indexData)
   </div>
 </template>
 
+<style scoped lang="sass">
+.container 
+  width: 100%
+  padding: 60px 5vw 150px
+</style>
+
