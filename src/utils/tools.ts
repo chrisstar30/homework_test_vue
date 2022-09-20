@@ -3,14 +3,23 @@ export const getTag = (index: number): string => {
   return `T-${index+1}${fakeID}`
 }
 
-export const secondsToHms = (d: number) => {
-  d = Number(d)
-  const h = Math.floor(d / 3600)
-  const m = Math.floor(d % 3600 / 60)
-  const s = Math.floor(d % 3600 % 60)
+export const padTo2Digits = (num: number) => {
+  return num.toString().padStart(2, '0')
+}
 
-  const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : ""
-  const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : ""
-  const sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : ""
-  return hDisplay + mDisplay + sDisplay
+export const secondsToHms = (milliseconds: number): string => {
+  let seconds = Math.floor(milliseconds / 1000)
+  let minutes = Math.floor(seconds / 60)
+  // let hours = Math.floor(minutes / 60)
+
+  seconds = seconds % 60
+  minutes = minutes % 60
+
+  // hours = hours % 24;
+
+  return `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`
+
+  // return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(
+  //   seconds,
+  // )}`
 }

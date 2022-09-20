@@ -22,7 +22,7 @@ const { resetData } = useIndexState()
 .navbar
   width: 100%
 .container
-  padding: 8px 50px
+  padding: 20px 50px
   display: flex
   justify-content: space-between
   align-items: center 
