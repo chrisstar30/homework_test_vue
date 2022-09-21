@@ -80,8 +80,8 @@
 
 <style lang="sass" scoped>
   .tickets-list
-    width: 100%
-    margin-left: 100px
+    width: 800px
+    margin-left: 60px
     padding: 30px 25px 50px
     background: #fff
     box-shadow: 0 3px 10px rgba(#000, .3)

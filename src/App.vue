@@ -12,16 +12,23 @@
 <template>
   <Navbar />
   <div class="container">
-    <TimeLine />
-    <TicketsList />
+    <div class="container-inner">
+      <TimeLine />
+      <TicketsList />
+    </div>
   </div>
 </template>
 
 <style scoped lang="sass">
   .container 
+    padding: 0 5vw
+    overflow-x: auto
+  .container-inner
+    width: 1160px
+    margin: 0 auto
+    padding: 60px 0 150px
     display: flex
     align-items: flex-start
     justify-content: center
-    padding: 60px 5vw 150px
 </style>
 

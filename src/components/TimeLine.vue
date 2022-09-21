@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+ <script lang="ts" setup>
   import { useIndexState } from '../store/index'
   import { storeToRefs } from 'pinia'
   import { secondsToHms } from '../utils/tools'
@@ -61,8 +61,7 @@
 <style lang="sass" scoped>
   @import '../assets/sass/_variable'
   .time-line 
-    width: 100%
-    max-width: 600px
+    width: 300px
   h3
     width: 100%
     font-size: 1.25rem
