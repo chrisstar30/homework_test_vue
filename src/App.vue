@@ -24,7 +24,7 @@
     padding: 0 5vw
     overflow-x: auto
   .container-inner
-    width: 1160px
+    width: 1360px
     margin: 0 auto
     padding: 60px 0 150px
     display: flex

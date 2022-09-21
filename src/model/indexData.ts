@@ -61,7 +61,7 @@ export const indexData = [
     name: defaultAction[0].name,
     score: defaultAction[0].score,
     time: defaultAction[0].time,
-    type: typeString['pc'],
+    type: typeString['pd'],
     completed: true,
     updatedAt: new Date().getTime(),
     createdAt: new Date().getTime()

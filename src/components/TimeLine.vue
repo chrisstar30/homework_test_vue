@@ -61,7 +61,7 @@
 <style lang="sass" scoped>
   @import '../assets/sass/_variable'
   .time-line 
-    width: 300px
+    width: 500px
   h3
     width: 100%
     font-size: 1.25rem

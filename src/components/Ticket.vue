@@ -70,7 +70,10 @@
           {{ data.name }}
         </div>
         <div class="tag">
-          {{ data.tag }}
+          <span>{{ data.tag }}</span>
+          <span class="score" v-if="data.type === 'Resolved'">
+            + {{ data.score }}
+          </span>
         </div>
       </div>
     </div>
@@ -108,23 +111,23 @@
         <div class="index">
           #{{ data._id + 1 }}
         </div>
-        <div class="control">
+        <div class="control" v-if="data.type === 'Pending' || data.type === 'Rejected'" >
           <i class="fa-solid fa-bars" @click.stop="controlPane = !controlPane"></i>
           <div class="pane" v-if="controlPane">
             <ul>
               <li 
-                v-if="data.type === 'Pending' || data.type === 'Rejected'" 
-                @click="processingHandler()">
+                @click="processingHandler()"
+              >
                   Processing
               </li>
               <li 
-                v-if="data.type === 'Rejected' || data.type === 'Processing'" 
-                @click="pendingHandler()">
+                @click="pendingHandler()"
+              >
                   Pending
               </li>
               <li 
-                v-if="data.type === 'Pending' || data.type === 'Processing'" 
-                @click="rejectedHandler()">
+                @click="rejectedHandler()"
+              >
                   Rejected
               </li>
               <li @click="indexState.deleteData(data._id)">Deleted</li>
@@ -181,6 +184,8 @@
       font-size: 0.75rem
       color: #666
       margin-top: 8px
+      .score
+        color: $green
   .count-down
     font-size: 0.75rem
     text-align: center
