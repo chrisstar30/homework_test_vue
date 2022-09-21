@@ -6,6 +6,9 @@ export const useIndexState = defineStore({
   state: () => {
     return {
       allData: [] as IndexDataType[],
+      showAddModal: false,
+      showEditModal: false,
+      editModelData: {} as IndexDataType
     }
   },
   getters: {
@@ -31,14 +34,27 @@ export const useIndexState = defineStore({
     }
   },
   actions: {
-    pushData: function(data: IndexDataType[]) {
+    setData: function(data: IndexDataType[]) {
       Object.assign(this.allData, data)
+    },
+    pushData: function(data: IndexDataType) {
+      this.allData.push(data)
     },
     resetData: function() {
       this.$reset()
     },
     deleteData: function(n: number) {
       this.allData.splice(n , 1)
+    },
+    addEditData: function(data: IndexDataType) {
+      Object.assign(this.editModelData, data)
+      this.controlEditModal(true)
+    },
+    controlEditModal: function(control: boolean) {
+      this.showEditModal = control
+    },
+    controlAddModal: function(control: boolean) {
+      this.showAddModal = control
     }
   }
 })

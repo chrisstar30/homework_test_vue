@@ -45,7 +45,7 @@
                   Score: {{ data.score }}
                 </div>
               </div>
-              <div class="read-more">
+              <div class="read-more" @click="indexState.addEditData(data)">
                 <span>
                   Read More
                 </span>
