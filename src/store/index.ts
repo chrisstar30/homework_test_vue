@@ -38,7 +38,7 @@ export const useIndexState = defineStore({
       Object.assign(this.allData, data)
     },
     pushData: function(data: IndexDataType) {
-      this.allData.push(data)
+      this.allData.unshift(data)
     },
     resetData: function() {
       this.$reset()

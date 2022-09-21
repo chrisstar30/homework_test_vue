@@ -1,4 +1,4 @@
- <script lang="ts" setup>
+<script lang="ts" setup>
   import { useIndexState } from '../store/index'
   import { storeToRefs } from 'pinia'
   import { secondsToHms } from '../utils/tools'
@@ -21,14 +21,14 @@
           <div class="circle">
             <i v-if="data.type === 'Rejected'" class="fa-solid fa-xmark"></i>
             <i v-else-if="data.type === 'Resolved'" class="fa-solid fa-check"></i>
-            <i v-else="data.type === 'Resolved'" class="fa-sharp fa-solid fa-clock"></i>
+            <i v-else class="fa-sharp fa-solid fa-clock"></i>
           </div>
           <div class="content">
             <div class="top-info">
               {{ data.name }}
             </div>
             <div 
-              v-if="!data.completed" 
+              v-if="data.completed" 
               class="completed"
             >
               {{ moment(data.updatedAt).format('YYYY-MM-DD h:mm:ss') }}

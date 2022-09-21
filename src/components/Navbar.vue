@@ -1,22 +1,23 @@
+<script lang="ts" setup>
+  import { useIndexState } from '../store/index'
+  
+  const indexState = useIndexState()
+  const { resetData } = indexState
+  </script>
+
 <template>
   <div class="navbar">
     <div class="container">
       <div class="logo">HOMEWORK</div>
       <div class="tools">
         <ul>
-          <li>新增任務</li>
+          <li @click="indexState.controlAddModal(true)">新增任務</li>
           <li @click="resetData()">清空所有任務</li>
         </ul>
       </div>
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { useIndexState } from '../store/index'
-
-const { resetData } = useIndexState()
-</script>
 
 <style lang="sass" scoped>
 .navbar
