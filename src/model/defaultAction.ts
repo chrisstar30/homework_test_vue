@@ -3,7 +3,7 @@ export const defaultAction = [
   {
     name: 'Action 1',
     score: 100,
-    time: 9000
+    time: 5000
   },
   {
     name: 'Action 2',

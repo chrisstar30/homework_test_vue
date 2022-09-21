@@ -32,8 +32,8 @@
   }
   const processingHandler = () => {
     props.data.type = 'Processing'
-    isStart.value = true
     isEnd.value = false
+    setTimeout(() => {isStart.value = true}, 0)
   }
   const rejectedHandler = () => {
     props.data.type = 'Rejected'
@@ -122,11 +122,13 @@
               </li>
               <li 
                 @click="pendingHandler()"
+                v-if="data.type === 'Rejected'"
               >
                   Pending
               </li>
               <li 
                 @click="rejectedHandler()"
+                v-if="data.type === 'Pending'"
               >
                   Rejected
               </li>

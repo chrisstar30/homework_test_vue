@@ -25,7 +25,7 @@
           </div>
           <div class="content">
             <div class="top-info">
-              {{ data.name }}
+              #{{ data._id + 1 }} - {{ data.name }}
             </div>
             <div 
               v-if="data.completed" 
