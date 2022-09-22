@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-  import VueCountdown from '@chenfengyuan/vue-countdown'
   import { ref, onMounted , PropType } from 'vue'
   import moment from 'moment'
-  import { secondsToHms } from '../utils/tools'
+  import { secondsToHms, countdown } from '../utils/tools'
   import { IndexDataType } from '../model/indexDataType'
   import { useIndexState } from '../store/index'
 
@@ -15,12 +14,13 @@
   })
 
   // time control
-  const isEnd = ref(false)
   const isStart = ref(false)
-  const endCountDown = () => {
-    props.data.type = 'Resolved'
-    props.data.completed = true
-    isEnd.value = true
+  const endCountDown = (nowData: IndexDataType): void => {
+    setTimeout(() => {
+      nowData.type = 'Resolved'
+      nowData.completed = true
+      isStart.value = false
+    }, 100)
   }
 
   // type control
@@ -28,17 +28,18 @@
   const pendingHandler = () => {
     props.data.type = 'Pending'
     isStart.value = false
-    isEnd.value = false
   }
   const processingHandler = () => {
+    console.log(props.data._id)
     props.data.type = 'Processing'
-    isEnd.value = false
-    setTimeout(() => {isStart.value = true}, 0)
+    isStart.value = true
+    countdown(props.data.time, `.timer-t.timer-${props.data._id}`, function() {
+      endCountDown(props.data)
+    })
   }
   const rejectedHandler = () => {
     props.data.type = 'Rejected'
     isStart.value = false
-    isEnd.value = false
   }
 
   // close pane
@@ -79,19 +80,14 @@
     </div>
     <div>
       <div class="count-down" 
-        v-if="!isEnd && data.type !== 'Resolved'"
+        v-if="data.type !== 'Resolved'"
         :style="{ '--time': (data.time / 1000) + 's' }"
         :class="{ 'start': isStart }"
       >
         <div class="timer-bar"></div>
-        <vue-countdown
-          @end="endCountDown"
-          :auto-start="isStart" 
-          :time="data.time" 
-          v-slot="{ minutes, seconds }"
-        >
-          {{ minutes }} : {{ seconds }} remain
-        </vue-countdown>
+        <div class="timer-t" :class="`timer-${data._id}`">
+          {{ secondsToHms(data.time) }}
+        </div>
       </div>
       <div class="time-info">
         <span v-if="data.type === 'Pending'">
@@ -109,7 +105,7 @@
       </div>
       <div class="control-pane">
         <div class="index">
-          #{{ data._id + 1 }}
+          #{{ data._id }}
         </div>
         <div class="control" v-if="data.type === 'Pending' || data.type === 'Rejected'" >
           <i class="fa-solid fa-bars" @click.stop="controlPane = !controlPane"></i>

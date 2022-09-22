@@ -69,7 +69,7 @@
       <ul>
         <Ticket 
           v-for="(data, index) in tempData"
-          :key="`data-${index}`"
+          :key="data._id"
           :data="data"
           >
         </Ticket>

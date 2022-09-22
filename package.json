@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@chenfengyuan/vue-countdown": "^2.1.0",
     "install": "^0.13.0",
     "moment": "^2.29.4",
     "npm": "^8.19.2",

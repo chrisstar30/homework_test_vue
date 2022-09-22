@@ -15,7 +15,7 @@
       <ul>
         <li 
           v-for="(data, index) in allData" 
-          :key="`data-${index}`"
+          :key="data._id"
           :class="data.type === 'Rejected' ? 'rejected' : data.type === 'Resolved' ? 'resolved': 'processing'"
         >
           <div class="circle">
@@ -25,7 +25,7 @@
           </div>
           <div class="content">
             <div class="top-info">
-              #{{ data._id + 1 }} - {{ data.name }}
+              #{{ data._id }} - {{ data.name }}
             </div>
             <div 
               v-if="data.completed" 
