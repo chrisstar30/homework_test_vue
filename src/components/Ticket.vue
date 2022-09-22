@@ -13,12 +13,18 @@
     }
   })
 
+  // prevention processing interrupt
+  if(props.data.type === 'Processing' && props.data.completed === false) {
+    props.data.type = 'Pending'
+  }
+
   // time control
   const isStart = ref(false)
   const endCountDown = (nowData: IndexDataType): void => {
     setTimeout(() => {
       nowData.type = 'Resolved'
       nowData.completed = true
+      nowData.updatedAt = new Date().getTime()
       isStart.value = false
     }, 100)
   }
@@ -30,7 +36,6 @@
     isStart.value = false
   }
   const processingHandler = () => {
-    console.log(props.data._id)
     props.data.type = 'Processing'
     isStart.value = true
     countdown(props.data.time, `.timer-t.timer-${props.data._id}`, function() {

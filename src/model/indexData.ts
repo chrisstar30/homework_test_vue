@@ -2,6 +2,13 @@
 import { getTag } from '../utils/tools'
 import { defaultAction } from './defaultAction'
 
+// 模擬第一筆資料創建時間
+let nowTime = Number(localStorage.getItem('first-time'))
+if (localStorage.getItem('first-time') === null) {
+  nowTime = new Date().getTime()
+  localStorage.setItem('first-time', nowTime.toString())
+}
+
 // Pending, Processing, Resolved, Rejected
 enum typeString {
   pd = "Pending",
@@ -10,7 +17,7 @@ enum typeString {
   rj = "Rejected",
 }
 
-export const indexData = [
+const fakeData = [
   {
     _id: 0,
     tag: getTag(0),
@@ -19,8 +26,8 @@ export const indexData = [
     time: defaultAction[0].time,
     type: typeString['rs'],
     completed: true,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 1,
@@ -30,8 +37,8 @@ export const indexData = [
     time: defaultAction[1].time,
     type: typeString['rj'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 2,
@@ -41,8 +48,8 @@ export const indexData = [
     time: defaultAction[0].time,
     type: typeString['pd'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 3,
@@ -52,8 +59,8 @@ export const indexData = [
     time: defaultAction[2].time,
     type: typeString['rs'],
     completed: true,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 4,
@@ -63,8 +70,8 @@ export const indexData = [
     time: defaultAction[3].time,
     type: typeString['pd'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 5,
@@ -74,8 +81,8 @@ export const indexData = [
     time: defaultAction[0].time,
     type: typeString['rj'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 6,
@@ -85,8 +92,8 @@ export const indexData = [
     time: defaultAction[5].time,
     type: typeString['rj'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 7,
@@ -96,8 +103,8 @@ export const indexData = [
     time: defaultAction[0].time,
     type: typeString['rs'],
     completed: true,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 8,
@@ -107,8 +114,8 @@ export const indexData = [
     time: defaultAction[6].time,
     type: typeString['rj'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 9,
@@ -118,8 +125,8 @@ export const indexData = [
     time: defaultAction[0].time,
     type: typeString['pd'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 10,
@@ -129,8 +136,8 @@ export const indexData = [
     time: defaultAction[7].time,
     type: typeString['rs'],
     completed: true,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 11,
@@ -140,8 +147,8 @@ export const indexData = [
     time: defaultAction[2].time,
     type: typeString['pd'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 12,
@@ -151,8 +158,8 @@ export const indexData = [
     time: defaultAction[0].time,
     type: typeString['rs'],
     completed: true,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 13,
@@ -162,8 +169,8 @@ export const indexData = [
     time: defaultAction[0].time,
     type: typeString['pd'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   },
   {
     _id: 14,
@@ -173,7 +180,15 @@ export const indexData = [
     time: defaultAction[0].time,
     type: typeString['rj'],
     completed: false,
-    updatedAt: new Date().getTime(),
-    createdAt: new Date().getTime()
+    updatedAt: nowTime,
+    createdAt: nowTime
   }
 ]
+
+
+let newData
+if(localStorage.getItem('IndexState') !== null) 
+  newData = JSON.parse(localStorage.getItem('IndexState') as string)
+else 
+  newData = fakeData
+export const indexData = newData

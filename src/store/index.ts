@@ -56,5 +56,9 @@ export const useIndexState = defineStore({
     controlAddModal: function(control: boolean) {
       this.showAddModal = control
     }
+  },
+  persist: {
+    storage: localStorage,
+    paths: ['allData'],
   }
 })
